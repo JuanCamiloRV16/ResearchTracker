@@ -1,37 +1,80 @@
-<app-navbar></app-navbar>
-<div class="container mt-4">
-  <div class="card">
-    <div class="card-body">
-      <span class="h3">
-        Cosas
-      </span>
-      <button class="btn btn-dark" routerLink="/nueva-cosa">Nuevo</button>
-      <table class="table mt-5 table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Pera</td>
-            <td>2</td>
-            <td>
-              <li class="fas fa-edit fa-lg text-info" style="margin-right: 5px;"></li>
-              <li class="fas fa-trash-alt fa-lg text-danger"></li>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Home</title>
+    </head>
 
-      <ul>
-        <li class="text" *ngFor="let item of listaCosas | async">
-          {{item.nombre}}
-        </li>
-      </ul>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand btn btn-primary" href="#">Research Tracker</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+                    aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-    </div>
-  </div>
-</div>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/nueva-cosa">Crear grupo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Agregar estudiantes</a>
+                            <span class="visually-hidden">(current)</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Asignar tarea</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Consultar</a>
+                        </li>
+                    </ul>
+                
+                    
+                </div>
+                <div class="btn float-right">
+                    <button type="button" class="btn btn-danger">Cerrar sesión</button>
+                </div>
+            </div>
+        </nav>
+
+        <br>
+
+        <div class="card border-primary mb-3 mx-auto" style="max-width: 30rem;">
+
+            <div class="form-group mx-auto">
+              <label class="form-label mt-4">Grupos</label><br>
+                <select multiple="" class="form-select" id="grupos">
+                  <option *ngFor="let item of listaCosas | async">{{item.nombre}}</option>
+                </select>
+                <label for="estudiantes" class="form-label mt-4">Selecciona los estudiantes</label><br>
+                <select multiple="" class="form-select" id="estudiantes">
+                  <option *ngFor="let item of listaEstudiantes | async">{{item.nombre}}</option>
+                </select>
+
+                <br>
+                <br>
+
+                <button type="button" class="btn btn-primary">Agregar</button>
+            </div>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    </body>
+</html>

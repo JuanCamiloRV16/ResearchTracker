@@ -11,9 +11,11 @@ import { firestore } from 'firebase';
 export class ListaCosasComponent implements OnInit {
 
   listaCosas: Observable<any[]> | any;
+  listaEstudiantes: Observable<any[]> | any;
 
   constructor(firestore: AngularFirestore) {
     this.listaCosas = firestore.collection('cosas').valueChanges();
+    this.listaEstudiantes = firestore.collection('estudiantes').valueChanges();
   }
 
   ngOnInit(): void {

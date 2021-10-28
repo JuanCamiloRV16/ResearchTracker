@@ -14,8 +14,7 @@ export class NuevaCosaComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private cosaService: CosasService) {
     this.createCosa = this.fb.group({
-      nombre: ['', Validators.required],
-      cantidad: ['', Validators.required]
+      nombre: ['', Validators.required]
     });
   }
 
@@ -29,8 +28,7 @@ export class NuevaCosaComponent implements OnInit {
       return;
     }
     const cosa: any = {
-      nombre: this.createCosa.value.nombre,
-      cantidad: this.createCosa.value.cantidad
+      nombre: this.createCosa.value.nombre
     }
 
     this.cosaService.agregarCosa(cosa).then(() => {
