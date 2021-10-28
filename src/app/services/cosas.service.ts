@@ -12,4 +12,8 @@ export class CosasService {
     return this.firestore.collection('cosas').add(cosa);
   }
 
+  agregarEstudiante(estudiante: any): Promise<any>{
+    return this.firestore.collection('estudiantes').add(estudiante);
+  }
+
 }
