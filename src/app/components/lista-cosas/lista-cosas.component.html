@@ -67,8 +67,10 @@
                 <button type="button" class="btn btn-primary">Agregar</button>
                 -->
 
+                
+
                 <form action="" [formGroup]="createEstudiante" (ngSubmit)="agregarEstudiante()">
-                  <label for="estudiantes" class="form-label mt-4">Agrega el estudiante</label><br>
+                  <label for="estudiantes" class="form-label mt-4">Agregar el estudiante</label><br>
                     <div class="col">
                       <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre">
                     </div>
@@ -76,6 +78,11 @@
                     <button type="submit" class="btn btn-primary">Crear</button>
                   </div>
                 </form>
+
+                <br>
+                <select multiple="" class="form-select" id="estudiantes">
+                  <option *ngFor="let item of listaEstudiantes | async">{{item.nombre}}</option>
+                </select>
             </div>
         </div>
     </body>
