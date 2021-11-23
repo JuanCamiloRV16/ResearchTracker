@@ -18,6 +18,16 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ListaCosasComponent } from './components/lista-cosas/lista-cosas.component';
 import { NuevaCosaComponent } from './components/nueva-cosa/nueva-cosa.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { CrearGrupoComponent } from './profesors/crear-grupo/crear-grupo.component';
+import { AgregarEstudiantesComponent } from './profesors/agregar-estudiantes/agregar-estudiantes.component';
+import { CrearProyectoComponent } from './estudiantes/crear-proyecto/crear-proyecto.component';
+import { RegistrarEventoComponent } from './estudiantes/registrar-evento/registrar-evento.component';
+import { RegistrarAvanceComponent } from './estudiantes/registrar-avance/registrar-avance.component';
+import { AsignarTareaComponent } from './profesors/asignar-tarea/asignar-tarea.component';
+import { ConsultarProfesorComponent } from './profesors/consultar-profesor/consultar-profesor.component';
+import { ConsultarEstudianteComponent } from './estudiantes/consultar-estudiante/consultar-estudiante.component';
+import { NavbarEstudianteComponent } from './estudiantes/navbar-estudiante/navbar-estudiante.component';
+import { NavbarProfesorComponent } from './profesors/navbar-profesor/navbar-profesor.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBCQpcTEgmJZMlF3NSV9acgoRvjk1p6pNg",
@@ -38,7 +48,17 @@ const firebaseConfig = {
     ProfilePageComponent,
     ListaCosasComponent,
     NuevaCosaComponent,
-    NavbarComponent
+    NavbarComponent,
+    CrearGrupoComponent,
+    AgregarEstudiantesComponent,
+    AsignarTareaComponent,
+    CrearProyectoComponent,
+    RegistrarEventoComponent,
+    RegistrarAvanceComponent,
+    ConsultarProfesorComponent,
+    ConsultarEstudianteComponent,
+    NavbarEstudianteComponent,
+    NavbarProfesorComponent
   ],
   imports: [
     BrowserModule,
