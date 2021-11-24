@@ -28,6 +28,7 @@ import { ConsultarProfesorComponent } from './profesors/consultar-profesor/consu
 import { ConsultarEstudianteComponent } from './estudiantes/consultar-estudiante/consultar-estudiante.component';
 import { NavbarEstudianteComponent } from './estudiantes/navbar-estudiante/navbar-estudiante.component';
 import { NavbarProfesorComponent } from './profesors/navbar-profesor/navbar-profesor.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBCQpcTEgmJZMlF3NSV9acgoRvjk1p6pNg",
@@ -68,6 +69,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    EditorModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
