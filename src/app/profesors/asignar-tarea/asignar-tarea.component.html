@@ -17,7 +17,7 @@
 
         <div class="card-body mx-auto">
             <h4 class="card-title">Asignar tarea</h4>
-            <form action="" [formGroup]="createGrupo" (ngSubmit)="agregarGrupos()">
+            <form action="" [formGroup]="createEstudiante" (ngSubmit)="agregarEstudiante()">
                 <div class="col">
                     <label class="col-form-label mt-4" for="inputDefault">Nombre</label>
                     <input class="form-control" type="text" formControlName="nombre">
@@ -27,17 +27,9 @@
 
                 <br>
 
-                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <button type="button" class="btn btn-primary">Estudiante</button>
-                    <div class="btn-group" role="group">
-                      <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"></button>
-                      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="">
-                        <a class="dropdown-item" href="#">Dropdown link</a>
-                        <a class="dropdown-item" href="#">Dropdown link</a>
-                      </div>
-                    </div>
-                  </div>
+                <select class="form-select" id="selectSudent">
+                  <option *ngFor="let item of listaEstudiantes | async">{{item.nombre}}</option>
+                </select>
 
                   <br>
                   <br>

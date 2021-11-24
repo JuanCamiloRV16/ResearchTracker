@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { CosasService } from './../../services/cosas.service';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { firestore } from 'firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,11 +12,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ConsultarProfesorComponent implements OnInit {
 
-  createGrupo: FormGroup;
+  listaGrupos: Observable<any[]> | any;
+  listaEstudiantes: Observable<any[]> | any;
+
+  createEstudiante: FormGroup;
   enviado = false;
 
-  constructor(private fb: FormBuilder, private cosaService: CosasService) {
-    this.createGrupo = this.fb.group({
+  constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService) {
+    this.listaGrupos = firestore.collection('grupos').valueChanges();
+    this.listaEstudiantes = firestore.collection('estudiantes').valueChanges();
+
+    this.createEstudiante = this.fb.group({
       nombre: ['', Validators.required]
     });
   }
@@ -21,17 +30,19 @@ export class ConsultarProfesorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  agregarGrupos() {
+  agregarEstudiante() {
     this.enviado = true;
 
-    if(this.createGrupo.invalid){
+    
+
+    if(this.createEstudiante.invalid){
       return;
     }
-    const grupo: any = {
-      nombre: this.createGrupo.value.nombre
+    const estudiante: any = {
+      nombre: this.createEstudiante.value.nombre
     }
 
-    this.cosaService.agregarGrupos(grupo).then(() => {
+    this.cosaService.agregarEstudiante(estudiante).then(() => {
       console.log("Registro Exitoso!");
     }).catch(error => {
       console.log(error);
