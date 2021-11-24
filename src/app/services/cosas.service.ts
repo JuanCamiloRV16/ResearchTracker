@@ -12,4 +12,11 @@ export class CosasService {
     return this.firestore.collection('cosas').add(cosa);
   }
 
+  agregarGrupos(grupo: any): Promise<any>{
+    return this.firestore.collection('grupos').add(grupo);
+  }
+
+  agregarEstudiante(estudiante: any): Promise<any>{
+    return this.firestore.collection('estudiantes').add(estudiante);
+  }
 }

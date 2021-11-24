@@ -6,20 +6,20 @@ import { firestore } from 'firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-lista-cosas',
-  templateUrl: './lista-cosas.component.html',
-  styleUrls: ['./lista-cosas.component.css']
+  selector: 'app-asignar-tarea',
+  templateUrl: './asignar-tarea.component.html',
+  styleUrls: ['./asignar-tarea.component.css']
 })
-export class ListaCosasComponent implements OnInit {
+export class AsignarTareaComponent implements OnInit {
 
-  listaCosas: Observable<any[]> | any;
+  listaGrupos: Observable<any[]> | any;
   listaEstudiantes: Observable<any[]> | any;
 
   createEstudiante: FormGroup;
   enviado = false;
 
   constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService) {
-    this.listaCosas = firestore.collection('cosas').valueChanges();
+    this.listaGrupos = firestore.collection('grupos').valueChanges();
     this.listaEstudiantes = firestore.collection('estudiantes').valueChanges();
 
     this.createEstudiante = this.fb.group({
@@ -48,5 +48,6 @@ export class ListaCosasComponent implements OnInit {
       console.log(error);
     })
   }
+
 
 }
