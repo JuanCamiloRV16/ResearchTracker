@@ -20,7 +20,7 @@ export class CrearGrupoComponent implements OnInit {
   selectedOption: string = "";
 
 
-  constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService, private toastr: ToastrService) {
+  constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService) {
     this.listaGrupos = firestore.collection('grupos').valueChanges();
 
     this.createGrupo = this.fb.group({
@@ -34,9 +34,6 @@ export class CrearGrupoComponent implements OnInit {
   borrarGrupo(id: string) {
     this.cosaService.borrarGrupo(id).then(() => {
       console.log('grupo eliminado con éxito');
-      this.toastr.error('registro eliminado', 'cosa eliminada', {
-        positionClass: 'toast-bottom-right'
-      });
     }).catch(error => {
       console.log(error);
     });

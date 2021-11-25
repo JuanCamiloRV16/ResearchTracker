@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { firestore } from 'firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { asLiteral } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-crear-proyecto',
@@ -14,14 +15,15 @@ import { ToastrService } from 'ngx-toastr';
 export class CrearProyectoComponent implements OnInit {
   listaProyectos: Observable<any[]> | any;
 
+  valorID = "";
 
-  createGrupo: FormGroup;
+  createProyecto: FormGroup;
   enviado = false;
 
-  constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService, private toastr: ToastrService) {
+  constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService) {
     this.listaProyectos = firestore.collection('proyectos').valueChanges();
 
-    this.createGrupo = this.fb.group({
+    this.createProyecto = this.fb.group({
       nombre: ['', Validators.required]
     });
   }
@@ -30,32 +32,29 @@ export class CrearProyectoComponent implements OnInit {
   }
 
   getvalue() {
-
+    alert(this.valorID);
   }
 
   borrarGrupo(id: string) {
     this.cosaService.borrarGrupo(id).then(() => {
       console.log('grupo eliminado con éxito');
-      this.toastr.error('registro eliminado', 'cosa eliminada', {
-        positionClass: 'toast-bottom-right'
-      });
     }).catch(error => {
       console.log(error);
     });
   }
 
 
-  agregarGrupos() {
+  agregarProyecto() {
     this.enviado = true;
 
-    if (this.createGrupo.invalid) {
+    if (this.createProyecto.invalid) {
       return;
     }
-    const grupo: any = {
-      nombre: this.createGrupo.value.nombre
+    const proyecto: any = {
+      nombre: this.createProyecto.value.nombre
     }
 
-    this.cosaService.agregarGrupos(grupo).then(() => {
+    this.cosaService.agregarProyecto(proyecto).then(() => {
       console.log("Registro Exitoso!");
     }).catch(error => {
       console.log(error);

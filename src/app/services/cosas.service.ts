@@ -1,5 +1,6 @@
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,18 @@ export class CosasService {
     return this.firestore.collection('proyectos').add(proyecto);
   }
 
+  actualizarProyecto(id: string, data:any): Promise<any> {
+    return this.firestore.collection('proyectos').doc(id).update(data);
+  }
+
+  borrarProyecto(id: string): Promise<any>{
+    return this.firestore.collection('proyectos').doc(id).delete();
+  }
+
+  leerProyecto(id:string) : Observable<any>{
+    return this.firestore.collection('proyectos').doc(id).snapshotChanges();
+  }
+
   agregarCosa(cosa: any): Promise<any>{
     return this.firestore.collection('cosas').add(cosa);
   }
@@ -20,8 +33,8 @@ export class CosasService {
     return this.firestore.collection('grupos').add(grupo);
   }
 
-  actualizarGrupo() {
-    
+  actualizarGrupo(id: string, data:any): Promise<any> {
+    return this.firestore.collection('grupos').doc(id).update(data);
   }
 
   borrarGrupo(id: string): Promise<any>{
