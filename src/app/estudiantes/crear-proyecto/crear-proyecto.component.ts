@@ -18,7 +18,7 @@ export class CrearProyectoComponent implements OnInit {
   createGrupo: FormGroup;
   enviado = false;
 
-  constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService) {
+  constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService, private toastr: ToastrService) {
     this.listaProyectos = firestore.collection('proyectos').valueChanges();
 
     this.createGrupo = this.fb.group({
@@ -29,13 +29,16 @@ export class CrearProyectoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getvalue(){
+  getvalue() {
 
   }
 
   borrarGrupo(id: string) {
     this.cosaService.borrarGrupo(id).then(() => {
-      console.log('grupo eliminada con éxito');
+      console.log('grupo eliminado con éxito');
+      this.toastr.error('registro eliminado', 'cosa eliminada', {
+        positionClass: 'toast-bottom-right'
+      });
     }).catch(error => {
       console.log(error);
     });
@@ -74,7 +77,7 @@ export class CrearProyectoComponent implements OnInit {
     if (actualizar != null)
 
       actualizar.style.display = "none";
-    
+
     if (borrar != null)
 
       borrar.style.display = "none";
@@ -94,7 +97,7 @@ export class CrearProyectoComponent implements OnInit {
     if (actualizar != null)
 
       actualizar.style.display = "block";
-    
+
     if (borrar != null)
 
       borrar.style.display = "none";
@@ -115,7 +118,7 @@ export class CrearProyectoComponent implements OnInit {
     if (actualizar != null)
 
       actualizar.style.display = "none";
-    
+
     if (borrar != null)
 
       borrar.style.display = "block";
