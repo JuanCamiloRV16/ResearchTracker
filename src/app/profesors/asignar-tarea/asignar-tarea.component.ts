@@ -55,6 +55,8 @@ export class AsignarTareaComponent implements OnInit {
 
     var crear = document.getElementById('crear');
 
+    var leer = document.getElementById("leer");
+
     var actualizar = document.getElementById("actualizar");
 
     var borrar = document.getElementById("borrar");
@@ -62,6 +64,35 @@ export class AsignarTareaComponent implements OnInit {
     if (crear != null)
 
       crear.style.display = "block";
+    
+    if (leer != null)
+      leer.style.display = "none";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "none";
+
+    if (borrar != null)
+
+      borrar.style.display = "none";
+  }
+
+  hideL() {
+
+    var crear = document.getElementById('crear');
+
+    var leer = document.getElementById("leer");
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "none";
+    
+    if (leer != null)
+      leer.style.display = "block";
 
     if (actualizar != null)
 
@@ -75,6 +106,8 @@ export class AsignarTareaComponent implements OnInit {
   hideA() {
     var crear = document.getElementById('crear');
 
+    var leer = document.getElementById("leer");
+
     var actualizar = document.getElementById("actualizar");
 
     var borrar = document.getElementById("borrar");
@@ -82,6 +115,9 @@ export class AsignarTareaComponent implements OnInit {
     if (crear != null)
 
       crear.style.display = "none";
+    
+    if (leer != null)
+      leer.style.display = "none";
 
     if (actualizar != null)
 
@@ -95,6 +131,8 @@ export class AsignarTareaComponent implements OnInit {
   hideB() {
     var crear = document.getElementById('crear');
 
+    var leer = document.getElementById("leer");
+
     var actualizar = document.getElementById("actualizar");
 
     var borrar = document.getElementById("borrar");
@@ -102,6 +140,9 @@ export class AsignarTareaComponent implements OnInit {
     if (crear != null)
 
       crear.style.display = "none";
+    
+    if (leer != null)
+      leer.style.display = "none";
 
     if (actualizar != null)
 

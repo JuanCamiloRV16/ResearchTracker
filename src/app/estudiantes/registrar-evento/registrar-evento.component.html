@@ -2,8 +2,8 @@
 <br>
 <div class="card border-primary mb-3 mx-auto" style="max-width: 30rem;">
 
-  <div class="card-body mx-auto">
-    <h4 class="card-title">Registrar evento</h4>
+  <div class="card-body mx-auto text-center">
+    <h4 class="card-title">Eventos</h4>
     <br>
     <button class="btn btn-dark" (click)="hideC()">Crear</button>
     <button class="btn btn-dark" (click)="hideL()">Leer</button>
@@ -20,16 +20,6 @@
         <label class="col-form-label mt-4" for="lugar">Lugar</label>
         <input class="form-control" type="text" formControlName="lugar" placeholder="Lugar">
       </div>
-      <br>
-      <select class="form-select">
-        <option *ngFor="let item of listaEstudiantes | async">{{item.nombre}}</option>
-      </select>
-
-      <br>
-      
-      <select class="form-select">
-        <option *ngFor="let item of listaProyectos | async">{{item.nombre}}</option>
-      </select>
       <br>
       
       <button type="submit" class="btn btn-primary">Crear</button>
