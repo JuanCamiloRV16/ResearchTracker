@@ -24,7 +24,8 @@ export class CrearProyectoComponent implements OnInit {
     this.listaProyectos = firestore.collection('proyectos').valueChanges({ idField: 'id' });
 
     this.createProyecto = this.fb.group({
-      nombre: ['', Validators.required]
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required]
     });
   }
 
@@ -57,6 +58,7 @@ export class CrearProyectoComponent implements OnInit {
     }
     const proyecto: any = {
       nombre: this.createProyecto.value.nombre,
+      descripcion: this.createProyecto.value.descripcion
       
     }
 
