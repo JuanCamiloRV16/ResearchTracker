@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { CosasService } from './../../services/cosas.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { firestore } from 'firebase';
+import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 @Component({
   selector: 'app-registrar-evento',
   templateUrl: './registrar-evento.component.html',
   styleUrls: ['./registrar-evento.component.css']
 })
 export class RegistrarEventoComponent implements OnInit {
+  listaProyectos: Observable<any[]> | any;
+  listaEstudiantes: Observable<any[]> | any;
 
   createGrupo: FormGroup;
   enviado = false;
 
-  constructor(private fb: FormBuilder, private cosaService: CosasService) {
+  constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService) {
+    this.listaProyectos = firestore.collection('proyectos').valueChanges();
+    this.listaEstudiantes = firestore.collection('estudiantes').valueChanges();
+    
     this.createGrupo = this.fb.group({
       nombre: ['', Validators.required]
     });
@@ -38,4 +45,64 @@ export class RegistrarEventoComponent implements OnInit {
     })
   }
 
+  hideC() {
+
+    var crear = document.getElementById('crear');
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "block";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "none";
+
+    if (borrar != null)
+
+      borrar.style.display = "none";
+  }
+
+  hideA() {
+    var crear = document.getElementById('crear');
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "none";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "block";
+
+    if (borrar != null)
+
+      borrar.style.display = "none";
+  }
+
+  hideB() {
+    var crear = document.getElementById('crear');
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "none";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "none";
+
+    if (borrar != null)
+
+      borrar.style.display = "block";
+  }
 }

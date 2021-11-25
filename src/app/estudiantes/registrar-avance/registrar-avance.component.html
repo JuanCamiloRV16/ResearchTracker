@@ -4,6 +4,11 @@
 
     <div class="card-body mx-auto">
         <h4 class="card-title">Registrar avance</h4>
+        
+        <button class="btn btn-dark" (click)="hideC()">Crear</button>
+        <button class="btn btn-dark" (click)="hideA()">Actualizar</button>
+        <button class="btn btn-dark" (click)="hideB()">Borrar</button>
+
         <form action="" [formGroup]="createGrupo" (ngSubmit)="agregarGrupos()">
             <div class="col">
                 <label class="col-form-label mt-4" for="inputDefault">Descripción</label>

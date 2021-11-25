@@ -7,18 +7,10 @@
   <div class="card-body mx-auto">
     <h4 class="card-title">Consultar</h4>
     <form action="" [formGroup]="createGrupo" (ngSubmit)="agregarGrupos()">
-
-      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        <button type="button" class="btn btn-primary">Proyecto</button>
-        <div class="btn-group" role="group">
-          <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false"></button>
-          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="">
-            <a class="dropdown-item" href="#">Dropdown link</a>
-            <a class="dropdown-item" href="#">Dropdown link</a>
-          </div>
-        </div>
-      </div>
+      <input type="text" ng-model="selectedCountryId">
+      <select class="form-select" id="selectSudent" ng-model="selectedCountryId">
+        <option *ngFor="let item of listaProyectos | async" value="{{item.id}}">{{item.nombre}}</option>
+      </select>
       <div class="mt-3">
         <button type="submit" class="btn btn-primary"> Consultar</button>
       </div>

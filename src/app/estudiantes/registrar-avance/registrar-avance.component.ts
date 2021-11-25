@@ -38,4 +38,64 @@ export class RegistrarAvanceComponent implements OnInit {
     })
   }
 
+  hideC() {
+
+    var crear = document.getElementById('crear');
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "block";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "none";
+
+    if (borrar != null)
+
+      borrar.style.display = "none";
+  }
+
+  hideA() {
+    var crear = document.getElementById('crear');
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "none";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "block";
+
+    if (borrar != null)
+
+      borrar.style.display = "none";
+  }
+
+  hideB() {
+    var crear = document.getElementById('crear');
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "none";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "none";
+
+    if (borrar != null)
+
+      borrar.style.display = "block";
+  }
 }

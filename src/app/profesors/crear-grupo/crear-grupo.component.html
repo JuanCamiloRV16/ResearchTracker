@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <title>Crear grupo</title>
-    </head>
 
-    <body>
-        <app-navbar-profesor></app-navbar-profesor>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Crear grupo</title>
+</head>
 
+<body>
+  <app-navbar-profesor></app-navbar-profesor>
+
+  <br>
+
+  <div class="card border-primary mb-3 mx-auto" style="max-width: 30rem;">
+    <div class="card-body mx-auto">
+      <h4 class="card-title">Grupos de investigación</h4>
+
+      <button class="btn btn-dark" (click)="hideC()">Crear</button>
+      <button class="btn btn-dark" (click)="hideA()">Actualizar</button>
+      <button class="btn btn-dark" (click)="hideB()">Borrar</button>
+
+      <form action="" [formGroup]="createGrupo" (ngSubmit)="agregarGrupos()" id="crear">
+        <label class="col-form-label mt-4" for="inputDefault">Nombre del grupo</label>
+        <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre">
         <br>
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
 
-        <div class="card border-primary mb-3 mx-auto" style="max-width: 30rem;">
+      <form id="borrar" style="display: none;">
+        <br>
+        <input type="text" ng-model="selectedCountryId">
+        <select class="form-select" id="selectSudent" ng-model="selectedCountryId">
+          <option  *ngFor="let item of listaGrupos | async" value="item.id">{{item.nombre}}</option>
+        </select>
+        <br>
+        <button type="submit" class="btn btn-primary">Borrar</button>
+      </form>
+    </div>
+  </div>
+</body>
 
-            <div class="card-body mx-auto">
-                <h4 class="card-title">Crear grupo de investigación</h4>
-                <form action="" [formGroup]="createGrupo" (ngSubmit)="agregarGrupos()">
-                  <label class="col-form-label mt-4" for="inputDefault">Nombre del grupo</label>
-                    <div class="col">
-                      <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre">
-                    </div>
-                  <div class="mt-3">
-                    <button type="submit" class="btn btn-primary">Crear</button>
-                  </div>
-                </form>
-            </div>
-        </div>
-    </body>
 </html>
-

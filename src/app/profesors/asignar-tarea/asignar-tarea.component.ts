@@ -14,6 +14,7 @@ export class AsignarTareaComponent implements OnInit {
 
   listaGrupos: Observable<any[]> | any;
   listaEstudiantes: Observable<any[]> | any;
+  listaProyectos: Observable<any[]> | any;
 
   createEstudiante: FormGroup;
   enviado = false;
@@ -21,6 +22,7 @@ export class AsignarTareaComponent implements OnInit {
   constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService) {
     this.listaGrupos = firestore.collection('grupos').valueChanges();
     this.listaEstudiantes = firestore.collection('estudiantes').valueChanges();
+    this.listaProyectos = firestore.collection('proyectos').valueChanges();
 
     this.createEstudiante = this.fb.group({
       nombre: ['', Validators.required]
@@ -49,5 +51,64 @@ export class AsignarTareaComponent implements OnInit {
     })
   }
 
+  hideC() {
 
+    var crear = document.getElementById('crear');
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "block";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "none";
+
+    if (borrar != null)
+
+      borrar.style.display = "none";
+  }
+
+  hideA() {
+    var crear = document.getElementById('crear');
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "none";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "block";
+
+    if (borrar != null)
+
+      borrar.style.display = "none";
+  }
+
+  hideB() {
+    var crear = document.getElementById('crear');
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "none";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "none";
+
+    if (borrar != null)
+
+      borrar.style.display = "block";
+  }
 }

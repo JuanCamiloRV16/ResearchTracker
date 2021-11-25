@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
 import { CosasService } from './../../services/cosas.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { firestore } from 'firebase';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crear-grupo',
@@ -8,11 +12,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./crear-grupo.component.css']
 })
 export class CrearGrupoComponent implements OnInit {
+  listaGrupos: Observable<any[]> | any;
 
   createGrupo: FormGroup;
   enviado = false;
 
-  constructor(private fb: FormBuilder, private cosaService: CosasService) {
+  selectedOption: string = "";
+
+
+  constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService) {
+    this.listaGrupos = firestore.collection('grupos').valueChanges();
+
     this.createGrupo = this.fb.group({
       nombre: ['', Validators.required]
     });
@@ -21,10 +31,18 @@ export class CrearGrupoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  borrarGrupo(id: string) {
+    this.cosaService.borrarGrupo(id).then(() => {
+      console.log('grupo eliminada con éxito');
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
   agregarGrupos() {
     this.enviado = true;
 
-    if(this.createGrupo.invalid){
+    if (this.createGrupo.invalid) {
       return;
     }
     const grupo: any = {
@@ -38,4 +56,65 @@ export class CrearGrupoComponent implements OnInit {
     })
   }
 
+  hideC() {
+
+    var crear = document.getElementById('crear');
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "block";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "none";
+
+    if (borrar != null)
+
+      borrar.style.display = "none";
+  }
+
+  hideA() {
+    var crear = document.getElementById('crear');
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "none";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "block";
+
+    if (borrar != null)
+
+      borrar.style.display = "none";
+  }
+
+  hideB() {
+    alert("hello");
+    var crear = document.getElementById('crear');
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "none";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "none";
+
+    if (borrar != null)
+
+      borrar.style.display = "block";
+  }
 }
