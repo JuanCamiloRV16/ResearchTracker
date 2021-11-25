@@ -78,8 +78,8 @@ export class CrearGrupoComponent implements OnInit {
 
     const evento: any = {
       nombre: this.createGrupo.value.nombre,
-      tipo: this.createGrupo.value.area,
-      lugar: this.createGrupo.value.miembros
+      area: this.createGrupo.value.area,
+      miembros: this.createGrupo.value.miembros
     }
     this.cosaService.actualizarGrupo(this.valor, evento).then(() =>{
       console.log("Registro Exitoso!");
