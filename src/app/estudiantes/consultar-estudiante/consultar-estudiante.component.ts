@@ -26,6 +26,7 @@ export class ConsultarEstudianteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   agregarGrupos() {

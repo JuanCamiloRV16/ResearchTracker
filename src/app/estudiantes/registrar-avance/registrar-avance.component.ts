@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CosasService } from './../../services/cosas.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { firestore } from 'firebase';
+import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-registrar-avance',
@@ -8,11 +11,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./registrar-avance.component.css']
 })
 export class RegistrarAvanceComponent implements OnInit {
-
+  listaProyectos: Observable<any[]> | any;
   createGrupo: FormGroup;
   enviado = false;
 
-  constructor(private fb: FormBuilder, private cosaService: CosasService) {
+  constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService) {
+    this.listaProyectos = firestore.collection('proyectos').valueChanges();
+
     this.createGrupo = this.fb.group({
       nombre: ['', Validators.required]
     });

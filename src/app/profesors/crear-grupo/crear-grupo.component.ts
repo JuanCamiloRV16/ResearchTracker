@@ -17,18 +17,29 @@ export class CrearGrupoComponent implements OnInit {
   createGrupo: FormGroup;
   enviado = false;
 
-  selectedOption: string = "";
+  valor = "";
 
 
   constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService) {
-    this.listaGrupos = firestore.collection('grupos').valueChanges();
+    this.listaGrupos = firestore.collection('grupos').valueChanges({ idField: 'id' });
 
     this.createGrupo = this.fb.group({
-      nombre: ['', Validators.required]
+      nombre: ['', Validators.required],
+      area: ['', Validators.required],
+      miembros: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
+  }
+
+  getvalue(event: any) {
+    this.valor = event.target.value;
+    alert(this.valor);
+  }
+
+  deleteGrupo() {
+    this.borrarGrupo(this.valor);
   }
 
   borrarGrupo(id: string) {
@@ -46,7 +57,9 @@ export class CrearGrupoComponent implements OnInit {
       return;
     }
     const grupo: any = {
-      nombre: this.createGrupo.value.nombre
+      nombre: this.createGrupo.value.nombre,
+      area: this.createGrupo.value.area,
+      miembros: this.createGrupo.value.miembros
     }
 
     this.cosaService.agregarGrupos(grupo).then(() => {
@@ -56,9 +69,31 @@ export class CrearGrupoComponent implements OnInit {
     })
   }
 
+  actualizarGrupo() {
+    this.enviado = true;
+
+    if (this.createGrupo.invalid) {
+      return;
+    }
+
+    const evento: any = {
+      nombre: this.createGrupo.value.nombre,
+      tipo: this.createGrupo.value.area,
+      lugar: this.createGrupo.value.miembros
+    }
+    this.cosaService.actualizarGrupo(this.valor, evento).then(() =>{
+      console.log("Registro Exitoso!");
+      alert("Se actualizo los datos");
+    }).catch(error => {
+      console.log(error);
+    })
+  }//cierra agregar cosa
+
   hideC() {
 
     var crear = document.getElementById('crear');
+
+    var leer = document.getElementById("leer");
 
     var actualizar = document.getElementById("actualizar");
 
@@ -67,6 +102,35 @@ export class CrearGrupoComponent implements OnInit {
     if (crear != null)
 
       crear.style.display = "block";
+    
+    if (leer != null)
+      leer.style.display = "none";
+
+    if (actualizar != null)
+
+      actualizar.style.display = "none";
+
+    if (borrar != null)
+
+      borrar.style.display = "none";
+  }
+
+  hideL() {
+
+    var crear = document.getElementById('crear');
+
+    var leer = document.getElementById("leer");
+
+    var actualizar = document.getElementById("actualizar");
+
+    var borrar = document.getElementById("borrar");
+
+    if (crear != null)
+
+      crear.style.display = "none";
+    
+    if (leer != null)
+      leer.style.display = "block";
 
     if (actualizar != null)
 
@@ -80,6 +144,8 @@ export class CrearGrupoComponent implements OnInit {
   hideA() {
     var crear = document.getElementById('crear');
 
+    var leer = document.getElementById("leer");
+
     var actualizar = document.getElementById("actualizar");
 
     var borrar = document.getElementById("borrar");
@@ -87,6 +153,9 @@ export class CrearGrupoComponent implements OnInit {
     if (crear != null)
 
       crear.style.display = "none";
+    
+    if (leer != null)
+      leer.style.display = "none";
 
     if (actualizar != null)
 
@@ -98,8 +167,9 @@ export class CrearGrupoComponent implements OnInit {
   }
 
   hideB() {
-    alert("hello");
     var crear = document.getElementById('crear');
+
+    var leer = document.getElementById("leer");
 
     var actualizar = document.getElementById("actualizar");
 
@@ -108,6 +178,9 @@ export class CrearGrupoComponent implements OnInit {
     if (crear != null)
 
       crear.style.display = "none";
+    
+    if (leer != null)
+      leer.style.display = "none";
 
     if (actualizar != null)
 

@@ -2,23 +2,21 @@
 <br>
 <div class="card border-primary mb-3 mx-auto" style="max-width: 30rem;">
 
-  <div class="card-body mx-auto">
+  <div class="card-body mx-auto text-center">
     <h4 class="card-title">Crear proyecto</h4>
 
     <button class="btn btn-dark" (click)="hideC()">Crear</button>
-    <button class="btn btn-dark" (click)="hideA()">Actualizar</button>
     <button class="btn btn-dark" (click)="hideB()">Borrar</button>
 
     <form action="" [formGroup]="createProyecto" (ngSubmit)="agregarProyecto()" id="crear">
 
       <div class="col">
-        <label class="col-form-label mt-4" for="inputDefault">Nombre del proyecto</label>
+        <label class="col-form-label mt-4" for="nombre">Nombre del proyecto</label>
         <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre">
-        <label class="col-form-label mt-4" for="inputDefault">Descripción del proyecto</label>
-
-        <h5>Editor TinyMCE</h5>
+        
+        <label class="col-form-label mt-4" for="descripcion">Descripción del proyecto</label>
         <editor [init]="{
-                    height: 500,
+                    height: 400,
                     menubar: false,
                     plugins: [
                       'advlist autolink lists link image charmap print preview anchor',
@@ -42,47 +40,14 @@
       </div>
     </form>
 
-    <form action="" [formGroup]="createProyecto" (ngSubmit)="agregarProyecto()" id="actualizar" style="display: none;">
-
-      <div class="col">
-        <br>
-        <select class="form-select" id="selectSudent" ng-model="selectedCountryId">
-          <option *ngFor="let item of listaProyectos | async" value="{{item.id}}">{{item.nombre}}</option>
-        </select>
-
-        <h5>Editor TinyMCE</h5>
-        <editor [init]="{
-                    height: 500,
-                    menubar: false,
-                    plugins: [
-                      'advlist autolink lists link image charmap print preview anchor',
-                      'searchreplace visualblocks code fullscreen',
-                      'insertdatetime media table paste code help wordcount'
-                    ],
-                    external_plugins: {
-                      'esquema-descripcion': 'https://juancamilorv16.github.io/plugin1-esquemadescripcion/esquema-descripcion/plugin.min.js',
-                      'calendario': 'https://juancamilorv16.github.io/plugin2-calendario/calendario/plugin.min.js'
-                    },
-                    toolbar:
-                      'undo redo | formatselect | bold italic backcolor | \
-                      alignleft aligncenter alignright alignjustify | \
-                      bullist numlist outdent indent | removeformat | help | esquema-descripcion | calendario'
-                    }"></editor>
-
-        <!-- <input class="form-control" type="text" formControlName="descripcion" placeholder="Nombre"> -->
-      </div>
-      <div class="mt-3">
-        <button type="submit" class="btn btn-primary">Actualizar</button>
-      </div>
-    </form>
-
     <form id="borrar" style="display: none;">
       <br>
-        <select class="form-select">
-          <option *ngFor="let item of listaProyectos | async">{{item.nombre}}</option>
+        <select class="form-select" (change)="getvalue($event)">>
+          <option></option>
+          <option *ngFor="let item of listaProyectos | async" [value]="item.id">{{item.nombre}}</option>
         </select>
       <br>
-      <button type="submit" class="btn btn-primary" (click)="getvalue()">Borrar</button>
+      <button type="submit" class="btn btn-primary" (click)="deleteProyecto()">Borrar</button>
     </form>
   </div>
 </div>

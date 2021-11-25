@@ -3,20 +3,20 @@
 
   <div class="form-container mx-auto">
     <br>
-    <h2>Login</h2>
+    <h2>Iniciar sesión</h2>
     <form #formData='ngForm' (ngSubmit)='onSubmit(formData)'>
       <br>
-      <input type="text" placeholder="Email address" (ngModel)="formData.value.email" name="email" class="input-txt" required>
+      <input type="text" placeholder="Correo" (ngModel)="formData.value.email" name="email" class="input-txt" required>
       <br>
       <br>
-      <input type="password" placeholder="Password" (ngModel)="formData.value.password" name="password" class="input-txt" required>
+      <input type="password" placeholder="Contraseña" (ngModel)="formData.value.password" name="password" class="input-txt" required>
       <br>
       <br>
-      <button type="submit" [disabled]="!formData.valid" class="auth-btn btn btn-primary">Log in</button>
+      <button type="submit" [disabled]="!formData.valid" class="auth-btn btn btn-primary">Iniciar sesión</button>
       
     </form>
     <br>
-    <a routerLink="/signup" routerLinkActive="active" class="create-account-txt">No account? <strong>Create one here</strong></a>
+    <a routerLink="/signup" routerLinkActive="active" class="create-account-txt">¿No tiene cuenta? <strong>Crear una acá</strong></a>
     <br>
     <br>
   </div>

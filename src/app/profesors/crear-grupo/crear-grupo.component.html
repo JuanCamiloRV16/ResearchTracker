@@ -13,29 +13,61 @@
 
   <br>
 
-  <div class="card border-primary mb-3 mx-auto" style="max-width: 30rem;">
+  <div class="card border-primary mb-3 mx-auto text-center" style="max-width: 30rem;">
     <div class="card-body mx-auto">
       <h4 class="card-title">Grupos de investigación</h4>
 
       <button class="btn btn-dark" (click)="hideC()">Crear</button>
+      <button class="btn btn-dark" (click)="hideL()">Leer</button>
       <button class="btn btn-dark" (click)="hideA()">Actualizar</button>
       <button class="btn btn-dark" (click)="hideB()">Borrar</button>
 
       <form action="" [formGroup]="createGrupo" (ngSubmit)="agregarGrupos()" id="crear">
-        <label class="col-form-label mt-4" for="inputDefault">Nombre del grupo</label>
+        <label class="col-form-label mt-4" for="nombre">Nombre del grupo</label>
         <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre">
+        <label class="col-form-label mt-4" for="area">Área</label>
+        <input class="form-control" type="text" formControlName="area" placeholder="Area">
+        <label class="col-form-label mt-4" for="miembros">Número de miembros</label>
+        <input class="form-control" type="text" formControlName="miembros" placeholder="Miembros">
         <br>
         <button type="submit" class="btn btn-primary">Crear</button>
       </form>
 
+      <form action="" [formGroup]="createGrupo" (ngSubmit)="actualizarGrupo()" id="actualizar" style="display: none;">
+        <br>
+        <select class="form-select" (change)="getvalue($event)">
+          <option></option>
+          <option  *ngFor="let item of listaGrupos | async" [value]="item.id">{{item.nombre}}</option>
+        </select>
+        <label class="col-form-label mt-4" for="nombre">Nombre del grupo</label>
+        <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre">
+        <label class="col-form-label mt-4" for="area">Área</label>
+        <input class="form-control" type="text" formControlName="area" placeholder="Area">
+        <label class="col-form-label mt-4" for="miembros">Número de miembros</label>
+        <input class="form-control" type="text" formControlName="miembros" placeholder="Miembros">
+        <br>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+      </form>
+
+      <div id="leer" style="display: none;">
+        <br>
+        <table class="table table-hover">
+          <tr scope="col" *ngFor="let item of listaGrupos | async">
+            <th>{{item.nombre}}</th>
+            <td>{{item.area}}</td>
+            <td>{{item.miembros}}</td>
+          </tr>
+        </table>
+      </div>
+
       <form id="borrar" style="display: none;">
         <br>
-        <input type="text" ng-model="selectedCountryId">
-        <select class="form-select" id="selectSudent" ng-model="selectedCountryId">
-          <option  *ngFor="let item of listaGrupos | async" value="item.id">{{item.nombre}}</option>
+        <select class="form-select" (change)="getvalue($event)">
+          <option></option>
+          <option  *ngFor="let item of listaGrupos | async" [value]="item.id">{{item.nombre}}</option>
         </select>
         <br>
-        <button type="submit" class="btn btn-primary">Borrar</button>
+        <button type="submit" class="btn btn-primary" (click)="deleteGrupo()">Borrar</button>
       </form>
     </div>
   </div>

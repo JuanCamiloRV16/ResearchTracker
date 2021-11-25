@@ -15,13 +15,13 @@ import { asLiteral } from '@angular/compiler/src/render3/view/util';
 export class CrearProyectoComponent implements OnInit {
   listaProyectos: Observable<any[]> | any;
 
-  valorID = "";
+  valor = "";
 
   createProyecto: FormGroup;
   enviado = false;
 
   constructor(firestore: AngularFirestore, private fb: FormBuilder, private cosaService: CosasService) {
-    this.listaProyectos = firestore.collection('proyectos').valueChanges();
+    this.listaProyectos = firestore.collection('proyectos').valueChanges({ idField: 'id' });
 
     this.createProyecto = this.fb.group({
       nombre: ['', Validators.required]
@@ -31,12 +31,17 @@ export class CrearProyectoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getvalue() {
-    alert(this.valorID);
+  getvalue(event: any) {
+    this.valor = event.target.value;
+    alert(this.valor);
   }
 
-  borrarGrupo(id: string) {
-    this.cosaService.borrarGrupo(id).then(() => {
+  deleteProyecto() {
+    this.borrarProyecto(this.valor);
+  }
+
+  borrarProyecto(id: string) {
+    this.cosaService.borrarProyecto(id).then(() => {
       console.log('grupo eliminado con éxito');
     }).catch(error => {
       console.log(error);
@@ -51,11 +56,13 @@ export class CrearProyectoComponent implements OnInit {
       return;
     }
     const proyecto: any = {
-      nombre: this.createProyecto.value.nombre
+      nombre: this.createProyecto.value.nombre,
+      
     }
 
     this.cosaService.agregarProyecto(proyecto).then(() => {
       console.log("Registro Exitoso!");
+      alert("Se agrego un proyecto!");
     }).catch(error => {
       console.log(error);
     })

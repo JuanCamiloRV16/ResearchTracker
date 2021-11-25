@@ -4,34 +4,77 @@
 
   <div class="card-body mx-auto">
     <h4 class="card-title">Registrar evento</h4>
-
+    <br>
     <button class="btn btn-dark" (click)="hideC()">Crear</button>
+    <button class="btn btn-dark" (click)="hideL()">Leer</button>
     <button class="btn btn-dark" (click)="hideA()">Actualizar</button>
     <button class="btn btn-dark" (click)="hideB()">Borrar</button>
 
-    <form action="" [formGroup]="createGrupo" (ngSubmit)="agregarGrupos()">
+    <form action="" [formGroup]="createEvento" (ngSubmit)="agregarEvento()" id="crear">
 
       <div class="col">
-        <label class="col-form-label mt-4" for="inputDefault">Nombre del proyecto</label>
+        <label class="col-form-label mt-4" for="nombre">Nombre</label>
         <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre">
-        <label class="col-form-label mt-4" for="inputDefault">Descripción del proyecto</label>
-        <input class="form-control" type="text" formControlName="descripcion" placeholder="Nombre">
+        <label class="col-form-label mt-4" for="tipo">Tipo</label>
+        <input class="form-control" type="text" formControlName="tipo" placeholder="Tipo">
+        <label class="col-form-label mt-4" for="lugar">Lugar</label>
+        <input class="form-control" type="text" formControlName="lugar" placeholder="Lugar">
       </div>
       <br>
-      <select class="form-select" id="selectSudent">
+      <select class="form-select">
         <option *ngFor="let item of listaEstudiantes | async">{{item.nombre}}</option>
       </select>
 
       <br>
       
-      <select class="form-select" id="selectSudent">
+      <select class="form-select">
         <option *ngFor="let item of listaProyectos | async">{{item.nombre}}</option>
       </select>
       <br>
       
-      <div class="mt-3">
-        <button type="submit" class="btn btn-primary">Crear</button>
+      <button type="submit" class="btn btn-primary">Crear</button>
+    </form>
+
+    <form action="" [formGroup]="createEvento" (ngSubmit)="actualizarEvento()" id="actualizar" style="display: none;">
+      <br>
+      <select class="form-select" (change)="getvalue($event)">
+        <option></option>
+        <option *ngFor="let item of listaEventos | async" [value]="item.id">{{item.nombre}}</option>
+      </select>
+
+      <div class="col">
+        <label class="col-form-label mt-4" for="nombre">Nombre</label>
+        <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre">
+        <label class="col-form-label mt-4" for="tipo">Tipo</label>
+        <input class="form-control" type="text" formControlName="tipo" placeholder="Tipo">
+        <label class="col-form-label mt-4" for="lugar">Lugar</label>
+        <input class="form-control" type="text" formControlName="lugar" placeholder="Lugar">
       </div>
+      <br>
+      <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+
+    <div id="leer" style="display: none;">
+      <br>
+      <table class="table table-hover">
+        <tr scope="col" *ngFor="let item of listaEventos | async">
+          <th>{{item.nombre}}</th>
+          <td>{{item.tipo}}</td>
+          <td>{{item.lugar}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <form id="borrar" style="display: none;">
+      <br>
+      
+      <select class="form-select" (change)="getvalue($event)">
+        <option></option>
+        <option *ngFor="let item of listaEventos | async" [value]="item.id">{{item.nombre}}</option>
+      </select>
+      <br>
+      
+      <button type="submit" class="btn btn-primary" (click)="deleteEvento()">Borrar</button>
     </form>
   </div>
 </div>
